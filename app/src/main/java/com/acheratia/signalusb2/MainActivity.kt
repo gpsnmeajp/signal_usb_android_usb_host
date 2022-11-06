@@ -10,13 +10,14 @@ import android.hardware.usb.UsbManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.hoho.android.usbserial.driver.UsbSerialDriver
 import com.hoho.android.usbserial.driver.UsbSerialPort
 import com.hoho.android.usbserial.driver.UsbSerialProber
+
 private const val ACTION_USB_PERMISSION = "com.acheratia.signalusb2.USB_PERMISSION"
 
 class MainActivity : AppCompatActivity() {
@@ -50,6 +51,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        findViewById<Button>(R.id.button_licence).setOnClickListener {
+            startActivity(Intent(this, OssLicensesMenuActivity::class.java))
+        };
+
         val filter = IntentFilter(ACTION_USB_PERMISSION)
         registerReceiver(usbReceiver, filter)
 
@@ -57,6 +62,7 @@ class MainActivity : AppCompatActivity() {
         val availableDrivers: List<UsbSerialDriver> =
             UsbSerialProber.getDefaultProber().findAllDrivers(manager)
         if (availableDrivers.isEmpty()) {
+            Toast.makeText(this,"接続してからアプリを再起動してください",Toast.LENGTH_SHORT)
             return
         }
 

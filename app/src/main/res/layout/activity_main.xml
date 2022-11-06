@@ -50,6 +50,20 @@
             android:backgroundTint="#000000"
             android:minHeight="100dp"
             />
+
+        <Button
+            android:id="@+id/button_licence"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#000000"
+            android:text="Licences" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="usb-serial-for-android: MIT Licence" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
